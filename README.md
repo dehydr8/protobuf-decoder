@@ -4,6 +4,11 @@ protobuf-decoder
 
 *protobuf-decoder* is a PHP library that reads raw protobuf buffers and returns a sane representation of the data.
 
+The protobuf encoding format can be found [here](https://developers.google.com/protocol-buffers/docs/encoding).
+
+## Notes
+1. Wiretypes 3 `(start group)`, 4 `(end group)` and 5 `(32bit fixed)` not implemented as of yet
+
 ## Representation
 
 ```
