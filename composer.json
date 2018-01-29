@@ -1,0 +1,24 @@
+{
+    "name": "dehydr8/protobuf-decoder",
+    "description": "Decoder for protobuf messages",
+    "keywords": ["decode", "deserialization", "protobuf"],
+    "license": "DBAD",
+    "authors": [
+        {
+            "name": "Osama Khalid",
+            "email": "osama@codinghazard.com"
+        }
+    ],
+    "type": "library",
+    "require": {
+		"php": ">=5.4"
+    },
+	"require-dev": {
+		"phpunit/phpunit": "5.2.*"
+    },
+	"autoload": {
+        "psr-4": {
+            "dehydr8\\Protobuf\\": "src/"
+        }
+    }
+}
