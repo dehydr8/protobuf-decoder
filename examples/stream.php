@@ -5,6 +5,6 @@ use dehydr8\Protobuf\Decoder;
 
 $b = file_get_contents($argv[1]);
 $d = new Decoder($b);
-echo json_encode($d->decode(), JSON_PRETTY_PRINT);
+echo json_encode($d->decodeObjects(), JSON_PRETTY_PRINT);
 
 ?>

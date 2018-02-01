@@ -58,7 +58,7 @@ class Decoder {
     return bin2hex($value);
   }
 
-  private function readString() {
+  private function readStringOrObject() {
     // intval for sane lengths
     $length = intval($this->readVarint());
 
@@ -97,6 +97,14 @@ class Decoder {
     //echo "[-] $message\r\n";
   }
 
+  public function decodeObjects() {
+    $objects = array();
+    while ($this->hasMoreContent()) {
+      $objects[] = $this->readStringOrObject();
+    }
+    return $objects;
+  }
+
   public function decode() {
     $fields = array();
     $finished = false;
@@ -113,9 +121,12 @@ class Decoder {
       switch ($type) {
         case 0: $value = $this->readVarint(); break;
         case 1: $value = $this->read64bit(); break;
-        case 2: $value = $this->readString(); break;
+        case 2: $value = $this->readStringOrObject(); break;
+        case 3:
+        case 4:
+          continue;
         default:
-          throw new \Exception("Invalid wiretype received: $type");
+          throw new \Exception("Invalid wiretype received: $type - idx $this->idx");
       }
 
       $fields[] = array(
